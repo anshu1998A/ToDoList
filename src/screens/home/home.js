@@ -17,7 +17,12 @@ export default function home({ navigation }) {
   const dispatch = useDispatch();
   const list = useSelector((state) => state.dataDetails.detailsList)
 
-
+  const editDetails = (id) => 
+  {
+    console.log("id " ,id)
+    navigation.navigate(navigationString.ADD_DETAILS,{id:id})
+    
+  }
 
   return (
     <View style={homeStyle.homeView}>
@@ -34,20 +39,30 @@ export default function home({ navigation }) {
       </View>
       <ScrollView>
         {
-          list.map((elem) => {
+          list.map((elem, index) => {
             return (
-              <View key={elem.id} style={{ backgroundColor: '#c9c8c5', borderRadius:9, marginVertical: 10, borderWidth: 1.5, marginHorizontal: 10, flexDirection:'row', justifyContent:'space-between' }}>
+              <View key={elem.id} style={homeStyle.detailsMain}>
                 <View>
-                  <Text style={{ marginLeft: 10,  }}> Name: {elem.name}</Text>
-                  <Text style={{ margin: 5 }} > Age: {elem.age}</Text>
-                  <Text style={{ margin: 5 }} > RollNo: {elem.rollNo}</Text>
-                  <Text style={{ margin: 5 }} > Address: {elem.address}</Text>
-                  <Text style={{ margin: 5 }} > Mobile Number: {elem.mobileNum}</Text>
+                  <Text style={{ marginLeft: 10, marginBottom: 5 }}> Name: {elem.name}</Text>
+                  <Text style={{ marginLeft: 10, marginBottom: 5 }} > Age: {elem.age}</Text>
+                  <Text style={{ marginLeft: 10, marginBottom: 5 }} > RollNo: {elem.rollNo}</Text>
+                  <Text style={{ marginLeft: 10, marginBottom: 5 }} > Address: {elem.address}</Text>
+                  <Text style={{ marginLeft: 10, marginBottom: 5 }} > Mobile Number: {elem.mobileNum}</Text>
                 </View>
-                <View>
-                  <TouchableOpacity onPress={() => dispatch(deleteData(elem.id))}>
-                  <Image source={ImagePath.delete} style={{height:40,width:40, marginRight:10, borderRadius:20, marginTop:10}} />
-                  <Image />
+                <View style={homeStyle.editMainView}>
+
+                  <View >
+                    <TouchableOpacity onPress={() => dispatch(deleteData(elem.id))}>
+                      <Image source={ImagePath.delete} style={homeStyle.deleteButton} />
+                      <Image />
+                    </TouchableOpacity>
+                  </View>
+                  {/* console.log(elem) */}
+                  <TouchableOpacity onPress={() => editDetails(elem)} >
+
+                    <View style={homeStyle.editTextView}>
+                      <Text style={homeStyle.editText}>Edit</Text>
+                    </View>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -59,7 +74,7 @@ export default function home({ navigation }) {
 
       <TouchableOpacity onPress={() => navigation.navigate(navigationString.ADD_DETAILS)}>
         <View>
-          <Image source={ImagePath.addImage} style={{ height: 40, width: 40, borderRadius: 20, alignSelf: 'center', marginBottom: 30 }} />
+          <Image source={ImagePath.addImage} style={homeStyle.addButton} />
         </View>
       </TouchableOpacity>
 

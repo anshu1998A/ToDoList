@@ -4,11 +4,14 @@ const initialState = {
 };
 const dataDetails = (state = initialState, action) => {
     // console.log(action.type)
+    // console.log({...state})
+
     switch (action.type) {
         case type.USER_DATA: const { id, data } = action.payload;
             return {
                 ...state,
                 detailsList: [
+                    
                     ...state.detailsList,
                     {
                         id: id,
@@ -27,6 +30,9 @@ const dataDetails = (state = initialState, action) => {
                 ...state,
                 detailsList:newList
             }
+
+            
+            
             default : return state;
     }
 }

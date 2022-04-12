@@ -8,13 +8,19 @@ import { useDispatch } from 'react-redux';
 import { saveEmployeeDetails } from '../../redux/actions/addDetails';
 
 
-export default function AddTask({ navigation }) {
+export default function AddTask({ navigation, route }) {
 
-  const [name, setName] = useState('')
-  const [age, setAge] = useState('')
-  const [address, setAddress] = useState('')
-  const [rollno, setRollno] = useState('')
-  const [phone, setPhoneNumber] = useState('')
+
+
+  const id = route?.params?.id
+  console.log("id",id)
+
+
+  const [name, setName] = useState(id?.name ? id?.name :'')
+  const [age, setAge] = useState(id?.age ? id?.age :'')
+  const [address, setAddress] = useState(id?.address ? id?.address :'')
+  const [rollno, setRollno] = useState(id?.rollNo ? id?.rollNo :'')
+  const [phone, setPhoneNumber] = useState(id?.mobileNum ? id?.mobileNum :'')
 
   const [nameError, setNameError] = useState(false)
   const [ageError, setAgeErro] = useState(false)
@@ -25,8 +31,32 @@ export default function AddTask({ navigation }) {
 
   const data = { name, age, rollno, phone, address }
 
+  // console.log(data)
 
   const dispatch = useDispatch()
+
+  const EditDetails = () => {
+    if (name.length === 0) {
+      setNameError(true)
+    }
+    else if (age.length === 0) {
+      setAgeErro(true)
+    }
+    else if (rollno.length === 0) {
+      setAgeErro(true)
+    }
+    else if (phone.length === 0) {
+      setAgeErro(true)
+    }
+    else if (address.length === 0) {
+      setAgeErro(true)
+    }
+    else if (address != 0) {
+      dispatch
+      navigation.navigate(navigationString.HOME)
+    }
+
+  }
   const submit = () => {
     if (name != '') {
       setNameError(false)
@@ -38,7 +68,6 @@ export default function AddTask({ navigation }) {
             setPhoneNumberError(false)
             if (address != 0) {
               setAddressError(false)
-              console.log(data)
               dispatch(saveEmployeeDetails(data))
               navigation.navigate(navigationString.HOME)
             }
@@ -64,7 +93,8 @@ export default function AddTask({ navigation }) {
       <TextInputComponent
         placeholder={'Enter your Name'}
         placeholderTextColor={colors.blackC}
-        onchangeText ={(value) => setName(value)}
+        onchangeText={(value) => setName(value)}
+        valuee={name}
       />
       {
         nameError ? <Text> enter name</Text> : null
@@ -72,7 +102,8 @@ export default function AddTask({ navigation }) {
       <TextInputComponent
         placeholder={'Enter your age'}
         placeholderTextColor={colors.blackC}
-        onchangeText ={(value) => setAge(value)}
+        onchangeText={(value) => setAge(value)}
+        valuee={age}
       />
       {
         ageError ? <Text> enter age </Text> : null
@@ -80,7 +111,8 @@ export default function AddTask({ navigation }) {
       <TextInputComponent
         placeholder={'Enter rollNo.'}
         placeholderTextColor={colors.blackC}
-        onchangeText ={(value) => setRollno(value)}
+        onchangeText={(value) => setRollno(value)}
+        valuee={rollno}
       />
       {
         rollnoError ? <Text> enter roll number </Text> : null
@@ -88,20 +120,22 @@ export default function AddTask({ navigation }) {
       <TextInputComponent
         placeholder={'Enter address'}
         placeholderTextColor={colors.blackC}
-        onchangeText ={(value) => setAddress(value)}
+        onchangeText={(value) => setAddress(value)}
+        valuee={address}
       />
-       {
+      {
         addressError ? <Text> enter address</Text> : null
       }
       <TextInputComponent
         placeholder={'Enter mobile number'}
         placeholderTextColor={colors.blackC}
-        onchangeText ={(value) => setPhoneNumber(value)}
+        onchangeText={(value) => setPhoneNumber(value)}
+        valuee={phone}
       />
-{
-         phoneError ? <Text> enter mobile number</Text> : null
+      {
+        phoneError ? <Text> enter mobile number</Text> : null
       }
-      <ButtonComponent buttonText='Submit' onpress={submit} />
+      <ButtonComponent buttonText={id? "Update": 'Submit'} onpress={id ? EditDetails : submit} />
     </View>
   )
 }

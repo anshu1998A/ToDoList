@@ -5,13 +5,14 @@ import colors from '../styles/colors';
 const TextInputComponent = ({
     placeholder = '',
     placeholderTextColor = '',
-    onchangeText
+    onchangeText, valuee
+    
 }) => {
     return (
         <View style={styles.viewcss}>
 
             <View>
-                <TextInput placeholder={placeholder} placeholderTextColor={placeholderTextColor} style={styles.inputtext} onChangeText={onchangeText} />
+                <TextInput placeholder={placeholder} placeholderTextColor={placeholderTextColor} style={styles.inputtext} onChangeText={onchangeText} value={valuee} />
             </View>
 
             

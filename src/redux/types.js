@@ -3,4 +3,5 @@ export default {
     LOGOUT: 'LogOut',
     USER_DATA: 'datainput',
     DELETE_DATA: 'deletedata',
+    EDIT_DATA: 'editdata',
 }

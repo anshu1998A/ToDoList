@@ -17,4 +17,11 @@ export const deleteData = (id) => {
         id:id
     }
 }
+
+export const editData = (index) => {
+    return {
+        type : types.EDIT_DATA,
+        index: index
+    }
+}
   

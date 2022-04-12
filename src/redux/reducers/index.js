@@ -5,7 +5,7 @@ import dataDetails from './detailsReducer'
 const rootReducer = combineReducers(
     {
         userStatus,
-        dataDetails
+        dataDetails,
     }
 )
 

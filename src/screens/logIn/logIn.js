@@ -11,8 +11,8 @@ import commonStyles from '../../styles/pageStyle'
 
 export default function logIn() {
 
-    const [emailEnter, SetEmailEnter] = useState('');
-  const [passwordEnter, setPasswordEnter] = useState('');
+    const [emailEnter, SetEmailEnter] = useState('Anshu@gmail.com');
+  const [passwordEnter, setPasswordEnter] = useState('Anmf@1245');
 
   const [email, setEmail] = useState(false);
   const [password, setPassword] = useState(false);
@@ -47,6 +47,7 @@ export default function logIn() {
             <TextInputComponent
                 placeholder={'Enter your user Name'}
                 onchangeText={(event) => SetEmailEnter(event)}
+                valuee={emailEnter}
             />
             {
                 email ? <Text  style={commonStyles.errorText} >Email should not be empty</Text> : null
@@ -57,6 +58,7 @@ export default function logIn() {
                 onchangeText={
                     (value) => setPasswordEnter(value)
                 }
+                valuee={passwordEnter}
             />
             {
                 password ? <Text style={commonStyles.errorText} >password should not be empty</Text> : null
