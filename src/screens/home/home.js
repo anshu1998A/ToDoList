@@ -17,10 +17,11 @@ export default function home({ navigation }) {
   const dispatch = useDispatch();
   const list = useSelector((state) => state.dataDetails.detailsList)
 
-  const editDetails = (id) => 
+  const editDetails = (id, index) => 
   {
-    console.log("id " ,id)
-    navigation.navigate(navigationString.ADD_DETAILS,{id:id})
+    // console.log("id " ,id)
+    navigation.navigate(navigationString.ADD_DETAILS,{id:id,index})
+    console.log(index)
     
   }
 
@@ -45,9 +46,9 @@ export default function home({ navigation }) {
                 <View>
                   <Text style={{ marginLeft: 10, marginBottom: 5 }}> Name: {elem.name}</Text>
                   <Text style={{ marginLeft: 10, marginBottom: 5 }} > Age: {elem.age}</Text>
-                  <Text style={{ marginLeft: 10, marginBottom: 5 }} > RollNo: {elem.rollNo}</Text>
+                  <Text style={{ marginLeft: 10, marginBottom: 5 }} > RollNo: {elem.rollno}</Text>
                   <Text style={{ marginLeft: 10, marginBottom: 5 }} > Address: {elem.address}</Text>
-                  <Text style={{ marginLeft: 10, marginBottom: 5 }} > Mobile Number: {elem.mobileNum}</Text>
+                  <Text style={{ marginLeft: 10, marginBottom: 5 }} > Mobile Number: {elem.phone}</Text>
                 </View>
                 <View style={homeStyle.editMainView}>
 
@@ -58,7 +59,7 @@ export default function home({ navigation }) {
                     </TouchableOpacity>
                   </View>
                   {/* console.log(elem) */}
-                  <TouchableOpacity onPress={() => editDetails(elem)} >
+                  <TouchableOpacity onPress={() => editDetails(elem, index)} >
 
                     <View style={homeStyle.editTextView}>
                       <Text style={homeStyle.editText}>Edit</Text>

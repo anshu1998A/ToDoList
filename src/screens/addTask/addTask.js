@@ -6,6 +6,7 @@ import navigationString from '../../navigations/navigationString';
 import ButtonComponent from '../../components/button';
 import { useDispatch } from 'react-redux';
 import { saveEmployeeDetails } from '../../redux/actions/addDetails';
+import actions from '../../redux/actions';
 
 
 export default function AddTask({ navigation, route }) {
@@ -13,14 +14,14 @@ export default function AddTask({ navigation, route }) {
 
 
   const id = route?.params?.id
-  console.log("id",id)
+
 
 
   const [name, setName] = useState(id?.name ? id?.name :'')
   const [age, setAge] = useState(id?.age ? id?.age :'')
   const [address, setAddress] = useState(id?.address ? id?.address :'')
-  const [rollno, setRollno] = useState(id?.rollNo ? id?.rollNo :'')
-  const [phone, setPhoneNumber] = useState(id?.mobileNum ? id?.mobileNum :'')
+  const [rollno, setRollno] = useState(id?.rollno ? id?.rollno :'')
+  const [phone, setPhoneNumber] = useState(id?.phone ? id?.phone :'')
 
   const [nameError, setNameError] = useState(false)
   const [ageError, setAgeErro] = useState(false)
@@ -28,6 +29,8 @@ export default function AddTask({ navigation, route }) {
   const [rollnoError, setRollnoError] = useState(false)
   const [phoneError, setPhoneNumberError] = useState(false)
 
+  console.log("my params",route?.params?.index)
+  console.log("my id", route?.params?.id)
 
   const data = { name, age, rollno, phone, address }
 
@@ -36,25 +39,26 @@ export default function AddTask({ navigation, route }) {
   const dispatch = useDispatch()
 
   const EditDetails = () => {
-    if (name.length === 0) {
+    if (name === '') {
       setNameError(true)
     }
-    else if (age.length === 0) {
+    else if (age === '') {
       setAgeErro(true)
     }
-    else if (rollno.length === 0) {
-      setAgeErro(true)
+    else if (rollno === '') {
+      setRollnoError(true)
     }
-    else if (phone.length === 0) {
-      setAgeErro(true)
+    else if (phone === '') {
+      setPhoneNumberError(true)
     }
-    else if (address.length === 0) {
-      setAgeErro(true)
+    else if (address === '') {
+      setAddressError(true)
     }
     else if (address != 0) {
-      dispatch
       navigation.navigate(navigationString.HOME)
     }
+
+    actions.editData({name, age,rollno,address,phone, index: route.params.index, id})
 
   }
   const submit = () => {

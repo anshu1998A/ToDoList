@@ -1,5 +1,5 @@
 import {  StyleSheet } from 'react-native'
-import React from 'react';
+
 
 export default  logInStyle = StyleSheet.create ({
 
@@ -28,4 +28,4 @@ export default  logInStyle = StyleSheet.create ({
         { fontSize: 18, fontWeight:'600' 
     },
    
-})
+});

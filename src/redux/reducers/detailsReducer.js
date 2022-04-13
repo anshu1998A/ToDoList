@@ -11,29 +11,48 @@ const dataDetails = (state = initialState, action) => {
             return {
                 ...state,
                 detailsList: [
-                    
+
                     ...state.detailsList,
                     {
                         id: id,
                         name: data.name,
                         age: data.age,
-                        rollNo: data.rollno,
+                        rollno: data.rollno,
                         address: data.address,
-                        mobileNum: data.phone,
+                        phone: data.phone,
                     },
                 ],
             }
 
-            case type.DELETE_DATA: 
+        case type.DELETE_DATA: {
             const newList = state.detailsList.filter((elem) => elem.id !== action.id)
             return {
                 ...state,
-                detailsList:newList
+                detailsList: newList
             }
+        }
 
+        case type.EDIT_DATA: {
+            console.log("update data", action.payload)
+            let data = action.payload
             
-            
-            default : return state;
+            console.log("id on reducer", data?.id)
+            let updateArry = state.detailsList.map((val, i) => {
+                if (val?.id == data?.id?.id) {
+                    return data
+                }
+                return val
+            })
+
+            console.log("update array",updateArry)
+
+            return {
+                ...state,
+                detailsList:updateArry
+            }
+        }
+
+        default: return state;
     }
 }
 export default dataDetails;
