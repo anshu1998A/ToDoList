@@ -6,14 +6,15 @@ import { logIN } from '../../redux/actions/auth';
 import TextInputComponent from '../../components/textInput';
 import logInStyle from './logInStyle';
 import commonStyles from '../../styles/pageStyle'
+import actions from '../../redux/actions';
 
 
 
-export default function logIn() {
+export default function LogIn() {
 
     const [emailEnter, SetEmailEnter] = useState('Anshu@gmail.com');
   const [passwordEnter, setPasswordEnter] = useState('Anmf@1245');
-
+  // const dispatch = useDispatch()
   const [email, setEmail] = useState(false);
   const [password, setPassword] = useState(false);
   const emailRegex = /^[\w-\.\_\$]+@([\w]{3,5}\.)[\w]{2,4}$/;
@@ -24,7 +25,8 @@ export default function logIn() {
       setEmail(false)
       if (strongRegex.test(passwordEnter)) {
         setPassword(false)
-        dispatch(logIN())
+        actions.logIN()
+        // dispatch(logIN())
       }
       else {
         setPassword(true)
@@ -37,7 +39,7 @@ export default function logIn() {
     }
   }
 
-    const dispatch = useDispatch()
+  
 
     return (
 

@@ -1,8 +1,8 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import navigationString from './navigationString'
-import home from '../screens/home/home'
-import addTask from '../screens/addTask/addTask'
+import home from '../screens/home/Home'
+import addTask from '../screens/addTask/AddTask'
 
 
 export default function mainStack(Stack) {

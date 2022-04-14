@@ -1,54 +1,59 @@
+
+// import AsyncStorage from "@react-native-async-storage/async-storage";
+import { getData, saveState } from "../../utils/utils";
 import type from "../types";
+
+
+
 const initialState = {
     detailsList: []
 };
 const dataDetails = (state = initialState, action) => {
-    // console.log(action.type)
-    // console.log({...state})
 
     switch (action.type) {
-        case type.USER_DATA: const { id, data } = action.payload;
-            return {
-                ...state,
-                detailsList: [
 
-                    ...state.detailsList,
-                    {
-                        id: id,
-                        name: data.name,
-                        age: data.age,
-                        rollno: data.rollno,
-                        address: data.address,
-                        phone: data.phone,
-                    },
-                ],
-            }
-
-        case type.DELETE_DATA: {
-            const newList = state.detailsList.filter((elem) => elem.id !== action.id)
+        case type.USER_DATA: {
+            const data = action.payload
+            console.log("fuyk", action.payload)
+            let newList = [...state.detailsList, ...data]
             return {
                 ...state,
                 detailsList: newList
             }
         }
 
+        case type.DELETE_DATA: {
+            const delList = [...state.detailsList]
+            const index = state.detailsList.findIndex((elem) => elem.dataId === action.id)
+            
+            if (index >= -1) {
+                delList.splice(index, 1)
+               
+            }
+            console.log("index",index)
+            console.log('ghvdbfc',delList)
+            return {
+                ...state,
+                detailsList: delList
+            }
+        }
+
         case type.EDIT_DATA: {
             console.log("update data", action.payload)
             let data = action.payload
-            
             console.log("id on reducer", data?.id)
             let updateArry = state.detailsList.map((val, i) => {
-                if (val?.id == data?.id?.id) {
+                if (val?.id == data?.USerID?.id) {
                     return data
                 }
                 return val
             })
 
-            console.log("update array",updateArry)
-
+            console.log("update array", updateArry)
+            saveState(updateArry)
             return {
                 ...state,
-                detailsList:updateArry
+                detailsList: updateArry
             }
         }
 

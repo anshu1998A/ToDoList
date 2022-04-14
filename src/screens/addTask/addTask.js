@@ -1,5 +1,5 @@
-import { View, Text, TextInput, Button } from 'react-native'
-import React, { useState } from 'react';
+import { View, Text } from 'react-native'
+import React, { useEffect, useState } from 'react';
 import TextInputComponent from '../../components/textInput';
 import colors from '../../styles/colors';
 import navigationString from '../../navigations/navigationString';
@@ -7,21 +7,17 @@ import ButtonComponent from '../../components/button';
 import { useDispatch } from 'react-redux';
 import { saveEmployeeDetails } from '../../redux/actions/addDetails';
 import actions from '../../redux/actions';
-
+import { saveState } from '../../utils/utils';
 
 export default function AddTask({ navigation, route }) {
 
+  const USerID = route?.params?.id
 
-
-  const id = route?.params?.id
-
-
-
-  const [name, setName] = useState(id?.name ? id?.name :'')
-  const [age, setAge] = useState(id?.age ? id?.age :'')
-  const [address, setAddress] = useState(id?.address ? id?.address :'')
-  const [rollno, setRollno] = useState(id?.rollno ? id?.rollno :'')
-  const [phone, setPhoneNumber] = useState(id?.phone ? id?.phone :'')
+  const [name, setName] = useState('divyanshu')
+  const [age, setAge] = useState('23')
+  const [address, setAddress] = useState('Punjab')
+  const [rollno, setRollno] = useState('78932')
+  const [phone, setPhoneNumber] = useState('9638520147')
 
   const [nameError, setNameError] = useState(false)
   const [ageError, setAgeErro] = useState(false)
@@ -29,12 +25,23 @@ export default function AddTask({ navigation, route }) {
   const [rollnoError, setRollnoError] = useState(false)
   const [phoneError, setPhoneNumberError] = useState(false)
 
-  console.log("my params",route?.params?.index)
-  console.log("my id", route?.params?.id)
+  // console.log("my params",route?.params?.index)
+  // console.log("my id", route?.params?.id)
+  const dataId = Math.floor(Math.random() * 1000)
+  const data = [{ dataId, name, age, rollno, phone, address }]
 
-  const data = { name, age, rollno, phone, address }
-
+  // console.log('gfghfv', dataId)
   // console.log(data)
+
+  useEffect(() => {
+    if (USerID) {
+      setName(USerID?.name)
+      setAge(USerID?.age)
+      setAddress(USerID?.address)
+      setRollno(USerID?.rollno)
+      setPhoneNumber(USerID?.phone)
+    }
+  }, [])
 
   const dispatch = useDispatch()
 
@@ -57,11 +64,14 @@ export default function AddTask({ navigation, route }) {
     else if (address != 0) {
       navigation.navigate(navigationString.HOME)
     }
-
-    actions.editData({name, age,rollno,address,phone, index: route.params.index, id})
+    actions.editData({ dataId, name, age, rollno, address, phone, index: route.params.index, USerID })
 
   }
   const submit = () => {
+
+
+    
+
     if (name != '') {
       setNameError(false)
       if (age != 0) {
@@ -72,7 +82,9 @@ export default function AddTask({ navigation, route }) {
             setPhoneNumberError(false)
             if (address != 0) {
               setAddressError(false)
+              console.log(data,"submit data");
               dispatch(saveEmployeeDetails(data))
+              // saveState()
               navigation.navigate(navigationString.HOME)
             }
             else
@@ -139,7 +151,7 @@ export default function AddTask({ navigation, route }) {
       {
         phoneError ? <Text> enter mobile number</Text> : null
       }
-      <ButtonComponent buttonText={id? "Update": 'Submit'} onpress={id ? EditDetails : submit} />
+      <ButtonComponent buttonText={USerID ? "Update" : 'Submit'} onpress={USerID ? EditDetails : submit} />
     </View>
   )
 }

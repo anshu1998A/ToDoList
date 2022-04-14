@@ -12,7 +12,12 @@ const TextInputComponent = ({
         <View style={styles.viewcss}>
 
             <View>
-                <TextInput placeholder={placeholder} placeholderTextColor={placeholderTextColor} style={styles.inputtext} onChangeText={onchangeText} value={valuee} />
+                <TextInput placeholder={placeholder}
+                 placeholderTextColor={placeholderTextColor} 
+                 style={styles.inputtext} 
+                 onChangeText={onchangeText}
+                  value={valuee} 
+                  />
             </View>
 
             

@@ -1,42 +1,46 @@
-import { View, Text, SafeAreaView } from 'react-native'
-import React from 'react';
-import logIn from './src/screens/logIn/logIn';
+import React, { useEffect } from 'react';
 import Route from './src/navigations/route';
 import { Provider } from 'react-redux';
 import store from './src/redux/store';
-import * as auth from './src/redux/actions/auth';
-import * as addSetails from './src/redux/actions/addDetails'
-export default function App() {
+import { getData } from './src/utils/utils';
+import types from './src/redux/types';
 
-// const arg = {
-//   name: 'anshu',
-//   roll: 2,
-//   age: 23
-// }
-// console.log({...auth})
-// console.log({...addSetails})
+const {dispatch} = store
+
+export default function App() {
+  useEffect(() => {
+    getData().then((res) =>{
+      if(!!res){
+        dispatch({
+          type: types.USER_DATA,
+          payload: res
+        })
+      }
+    })
+      },[])
 
   return (
 
     <Provider store={store}>
       <Route/>
+      
     </Provider>
     
   )
 }
 
 
-//import liraries
-// import React, { Component, useEffect } from 'react';
+// // import liraries
+// import React, { Component, useEffect , useState} from 'react';
 // import { View, Text, StyleSheet,Button } from 'react-native';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
-// import { getData, saveData } from './src/utils/utils';
+// 
 
 // // create a component
 // const App = () => {
 
 
-
+// const [name, setName] = useState('')
 
 // useEffect(()=>{
 //   saveData([{name: 'dklfjdkfdkfjk'}])
@@ -58,19 +62,16 @@ export default function App() {
 
 //   const fetchData = () =>{
 //     getData().then((res)=>{
-
 //       console.log("value",res)
+//       setName(res[0].name)
 //     })
-
-
 //   }
 
 //   return (
 //     <View style={styles.container}>
 //       <Text>App</Text>
 
-   
-
+//    <Text>{name}</Text>
 // <Button 
 //         title='Get Data '
 //         onPress={fetchData}

@@ -1,43 +1,48 @@
 import { StyleSheet } from 'react-native';
+import { moderateScale, moderateScaleVertical, textScale } from '../../styles/responsiveSize';
+
 
 export default homeStyle = StyleSheet.create({
     homeView: {
         flex: 1,
+        marginLeft: moderateScale(10)
+
+    },
+    homeText: {
+        fontSize: textScale(20),
+        fontWeight: '700',
+        color: 'black',
+        marginRight: moderateScaleVertical(20),
+        marginTop: moderateScale(10)
     },
     addDataText: {
         color: 'black',
-        fontSize: 20,
+        fontSize: textScale(20),
     },
     addButton: {
-        height: 40,
-        width: 40,
+        height: moderateScale(40),
+        width: moderateScale(40),
         borderRadius: 20,
         alignSelf: 'center',
-        marginBottom: 30
+        marginBottom: moderateScaleVertical(30)
     },
     logOutView: {
-        alignContent: 'flex-end',
-        alignItems: 'center',
-        // backgroundColor: 'orange',
-        borderRadius: 4,
-        margin: 10,
-        justifyContent: 'center',
-        width: 150,
-        height: 40,
-        alignSelf: 'flex-end'
+        marginRight: moderateScale(10)
     },
     logOutText: {
-        fontSize: 20,
+        fontSize: textScale(20),
         fontWeight: '700',
-        color: 'orange'
+        color: 'orange',
+        marginRight: moderateScaleVertical(20),
+        marginTop: moderateScale(10)
     },
     detailsMain: {
         backgroundColor: '#c9c8c5',
         borderRadius: 9,
-        marginVertical: 20,
+        marginVertical: moderateScaleVertical(20),
         borderColor: 'orange',
         borderWidth: 1,
-        marginHorizontal: 10,
+        marginHorizontal: moderateScale(10),
         justifyContent: 'space-between',
         shadowColor: 'orange',
         shadowOpacity: 1
@@ -45,31 +50,36 @@ export default homeStyle = StyleSheet.create({
     editMainView: {
         flexDirection: 'row',
         justifyContent: 'flex-end',
-        marginHorizontal: 20,
+        marginHorizontal: moderateScale(20),
         shadowColor: 'grey',
         shadowOpacity: 1
     },
     deleteButton: {
         height: 40,
         width: 40,
-        marginRight: 10,
+        marginRight: moderateScaleVertical(10),
         borderRadius: 20,
-        marginTop: 10
+        marginTop: moderateScaleVertical(10)
     },
     editTextView: {
         backgroundColor: 'white',
         height: 25,
         width: 40,
-        marginTop: 20,
-        marginBottom: 10,
-        paddingBottom: 10,
+        marginTop: moderateScaleVertical(20),
+        marginBottom: moderateScaleVertical(10),
+        paddingBottom: moderateScaleVertical(20),
     },
     editText: {
         height: 40,
-        fontSize: 20,
+        fontSize: textScale(20),
         justifyContent: 'center',
         alignContent: 'center',
         alignItems: 'center',
-        alignSelf: 'center'
+        alignSelf: 'center',
+        color: 'black'
+    },
+    savedData: {
+        marginLeft: moderateScale(10),
+        marginBottom: moderateScaleVertical(5)
     }
 })

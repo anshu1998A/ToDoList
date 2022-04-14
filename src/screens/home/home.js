@@ -1,39 +1,52 @@
-import { View, Text, SafeAreaView, TouchableOpacity, Image, ScrollView } from 'react-native'
+import { View, Text,  TouchableOpacity, Image, ScrollView } from 'react-native'
 import React from 'react'
 import homeStyle from './homeStyle';
 import navigationString from '../../navigations/navigationString';
 import ImagePath from '../../constants/imagePath';
-import ButtonComponent from '../../components/button';
 import { useDispatch, useSelector } from 'react-redux';
 import { Logout } from '../../redux/actions/auth';
-import dataDetails from '../../redux/reducers/detailsReducer';
 import { deleteData } from '../../redux/actions/addDetails';
 
 
 
 
-export default function home({ navigation }) {
+export default function Home({ navigation }) {
 
   const dispatch = useDispatch();
   const list = useSelector((state) => state.dataDetails.detailsList)
+  console.log('List+++++', list)
 
-  const editDetails = (id, index) => 
-  {
+  const editDetails = (index) => {
     // console.log("id " ,id)
-    navigation.navigate(navigationString.ADD_DETAILS,{id:id,index})
-    console.log(index)
-    
+    navigation.navigate(navigationString.ADD_DETAILS, { userId: index })
+    // console.log(index)
+
   }
+ 
+
+
 
   return (
     <View style={homeStyle.homeView}>
 
+
+      {/* <Image
+        source={{ uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRao71aypm3fhKKbyl7eEG7Mk_lOeWDGCYliwkXsoZRuKhoVIhv3PesR9ms03fvOX3tAKI&usqp=CAU" }}
+        style={{
+          height: moderateScale(80),
+          width: moderateScale(80),
+          borderRadius: moderateScale(40)
+        }}
+      /> */}
+
+
+
       <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-        <View style={{ justifyContent: 'center', alignItems: 'center', marginLeft: 10 }}>
-          <Text style={{ fontSize: 20, fontWeight: '700', }}>Home</Text>
+        <View style={homeStyle.homeView}>
+          <Text style={homeStyle.homeText}>Home</Text>
         </View>
         <TouchableOpacity onPress={() => dispatch(Logout())}>
-          <View style={{ justifyContent: 'center', alignItems: 'center', marginRight: 10 }}>
+          <View>
             <Text style={homeStyle.logOutText}>LogOut</Text>
           </View>
         </TouchableOpacity>
@@ -42,18 +55,18 @@ export default function home({ navigation }) {
         {
           list.map((elem, index) => {
             return (
-              <View key={elem.id} style={homeStyle.detailsMain}>
+              <View key={index} style={homeStyle.detailsMain}>
                 <View>
-                  <Text style={{ marginLeft: 10, marginBottom: 5 }}> Name: {elem.name}</Text>
-                  <Text style={{ marginLeft: 10, marginBottom: 5 }} > Age: {elem.age}</Text>
-                  <Text style={{ marginLeft: 10, marginBottom: 5 }} > RollNo: {elem.rollno}</Text>
-                  <Text style={{ marginLeft: 10, marginBottom: 5 }} > Address: {elem.address}</Text>
-                  <Text style={{ marginLeft: 10, marginBottom: 5 }} > Mobile Number: {elem.phone}</Text>
+                  <Text style={homeStyle.savedData}> Name: {elem.name}</Text>
+                  <Text style={homeStyle.savedData} > Age: {elem.age}</Text>
+                  <Text style={homeStyle.savedData} > RollNo: {elem.rollno}</Text>
+                  <Text style={homeStyle.savedData} > Address: {elem.address}</Text>
+                  <Text style={homeStyle.savedData} > Mobile Number: {elem.phone}</Text>
                 </View>
                 <View style={homeStyle.editMainView}>
 
                   <View >
-                    <TouchableOpacity onPress={() => dispatch(deleteData(elem.id))}>
+                    <TouchableOpacity onPress={() => dispatch(deleteData(index))}>
                       <Image source={ImagePath.delete} style={homeStyle.deleteButton} />
                       <Image />
                     </TouchableOpacity>

@@ -5,10 +5,7 @@ export const saveEmployeeDetails = (data) =>{
     // const nextid = 0;
     return{
         type: types.USER_DATA,
-        payload: {
-            id:Math.floor(Math.random()*1000), 
-            data: data,
-        }
+        payload: data
     }
 }
 
