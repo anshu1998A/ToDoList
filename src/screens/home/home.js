@@ -66,7 +66,7 @@ export default function Home({ navigation }) {
                 <View style={homeStyle.editMainView}>
 
                   <View >
-                    <TouchableOpacity onPress={() => dispatch(deleteData(index))}>
+                    <TouchableOpacity onPress={() => dispatch(deleteData(elem.dataId))}>
                       <Image source={ImagePath.delete} style={homeStyle.deleteButton} />
                       <Image />
                     </TouchableOpacity>

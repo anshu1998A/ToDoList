@@ -6,6 +6,7 @@ export const saveState = async (detailsList) => {
   try {
     const initState = JSON.stringify(detailsList);
     await AsyncStorage.setItem('data_key', initState);
+    console.log('Data is stored in store')
     return initState
   } catch (error) {
     console.log('data is not svaed')
@@ -21,7 +22,6 @@ export const getData = async () => {
     console.log("app screen get data error")
   }
 }
-
 
 
 export const removeData = async () => {

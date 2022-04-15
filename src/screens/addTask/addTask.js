@@ -7,17 +7,17 @@ import ButtonComponent from '../../components/button';
 import { useDispatch } from 'react-redux';
 import { saveEmployeeDetails } from '../../redux/actions/addDetails';
 import actions from '../../redux/actions';
-import { saveState } from '../../utils/utils';
 
 export default function AddTask({ navigation, route }) {
 
-  const USerID = route?.params?.id
+  const USerID = route?.params?.userId
+  const updateId = USerID?.dataId
 
-  const [name, setName] = useState('divyanshu')
-  const [age, setAge] = useState('23')
-  const [address, setAddress] = useState('Punjab')
-  const [rollno, setRollno] = useState('78932')
-  const [phone, setPhoneNumber] = useState('9638520147')
+  const [name, setName] = useState('')
+  const [age, setAge] = useState('')
+  const [address, setAddress] = useState('')
+  const [rollno, setRollno] = useState('')
+  const [phone, setPhoneNumber] = useState('')
 
   const [nameError, setNameError] = useState(false)
   const [ageError, setAgeErro] = useState(false)
@@ -32,7 +32,7 @@ export default function AddTask({ navigation, route }) {
 
   // console.log('gfghfv', dataId)
   // console.log(data)
-
+// console.log("USERID is :", USerID)
   useEffect(() => {
     if (USerID) {
       setName(USerID?.name)
@@ -64,7 +64,7 @@ export default function AddTask({ navigation, route }) {
     else if (address != 0) {
       navigation.navigate(navigationString.HOME)
     }
-    actions.editData({ dataId, name, age, rollno, address, phone, index: route.params.index, USerID })
+    actions.editData({ updateId, name, age, rollno, address, phone })
 
   }
   const submit = () => {

@@ -10,10 +10,10 @@ export const saveEmployeeDetails = (data) =>{
 }
 
 
-export const deleteData = (id) => {
+export const deleteData = (dataId) => {
     return {
         type: types.DELETE_DATA,
-        id:id
+        dataId
     }
 }
 
