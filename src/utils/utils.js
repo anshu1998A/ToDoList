@@ -34,15 +34,6 @@ export const saveLogin = async (data) => {
   }
 }
 
-export const storeLogin = async (data) => {
-  try {
-    const jsonValue = JSON.stringify(data)
-    await AsyncStorage.setItem('login_key', jsonValue)
-    return jsonValue
-  } catch (e) {
-    console.log("login_data store error")
-  }
-}
 
 
 export const getLogin = async () => {

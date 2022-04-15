@@ -1,31 +1,48 @@
-import {  StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
+import { moderateScale, moderateScaleVertical, textScale } from '../../styles/responsiveSize';
 
 
-export default  logInStyle = StyleSheet.create ({
+export default logInStyle = StyleSheet.create({
 
-    logInMain:{ flex: 1, alignContent: 'center', alignItems: 'center', justifyContent: 'center' },
+    logInMain: {
+        flex: 1,
+        alignContent: 'center',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
 
-    logInHeading:{ fontSize: 20, fontWeight: '700', color:'#7d9ac9' },
+    logInHeading: {
+        fontSize: moderateScale(20),
+        fontWeight: '700',
+        color: '#7d9ac9'
+    },
 
-    userInput:{
-        borderColor:"black",
-        borderWidth:2,
-        marginTop: 10,
-        borderRadius:5,
-        height:30,
-        width:200,
+    userInput: {
+        borderColor: "black",
+        borderWidth: moderateScale(2),
+        marginTop: moderateScale(10),
+        borderRadius: moderateScale(5),
+        height: moderateScale(30),
+        width: moderateScale(20),
     },
     logInView:
-        {
-            alignContent: 'center', alignItems: 'center', backgroundColor: 'orange',
-            borderRadius: 4, margin: 10,
-            justifyContent: 'center',
-            width: 150, height: 40, alignSelf: 'center'
-        }
+    {
+        alignContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'orange',
+        borderRadius: moderateScale(4),
+        margin: moderateScale(10),
+        justifyContent: 'center',
+        width: moderateScale(150),
+        height: moderateScale(40),
+        alignSelf: 'center'
+    }
     ,
 
     logInText:
-        { fontSize: 18, fontWeight:'600' 
+    {
+        fontSize: textScale(18),
+         fontWeight: '600'
     },
-   
+
 });

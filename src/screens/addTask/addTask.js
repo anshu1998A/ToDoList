@@ -8,8 +8,11 @@ import { useDispatch } from 'react-redux';
 import { saveEmployeeDetails } from '../../redux/actions/addDetails';
 import actions from '../../redux/actions';
 
-export default function AddTask({ navigation, route }) {
 
+
+
+export default function AddTask({ navigation, route }) {
+  
   const USerID = route?.params?.userId
   const updateId = USerID?.dataId
 
@@ -43,7 +46,6 @@ export default function AddTask({ navigation, route }) {
     }
   }, [])
 
-  const dispatch = useDispatch()
 
   const EditDetails = () => {
     if (name === '') {
@@ -67,10 +69,11 @@ export default function AddTask({ navigation, route }) {
     actions.editData({ updateId, name, age, rollno, address, phone })
 
   }
+
+
+//*******************************************************On submit button action*************************************************************
+
   const submit = () => {
-
-
-    
 
     if (name != '') {
       setNameError(false)
@@ -83,7 +86,7 @@ export default function AddTask({ navigation, route }) {
             if (address != 0) {
               setAddressError(false)
               console.log(data,"submit data");
-              dispatch(saveEmployeeDetails(data))
+              actions.saveEmployeeDetails(data)
               // saveState()
               navigation.navigate(navigationString.HOME)
             }
@@ -102,6 +105,9 @@ export default function AddTask({ navigation, route }) {
     else
       setNameError(true)
   }
+
+
+
 
 
   return (

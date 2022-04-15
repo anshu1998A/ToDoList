@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import { textScale } from '../../styles/responsiveSize';
 
 export default homeStyle = StyleSheet.create ({
     homeView:{
@@ -9,7 +10,7 @@ export default homeStyle = StyleSheet.create ({
     },
     addDataText:{
         color:'black',
-        fontSize:20,
+        fontSize:textScale(20),
     },
     addButton:{
         

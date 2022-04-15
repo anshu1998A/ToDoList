@@ -22,7 +22,7 @@ export default homeStyle = StyleSheet.create({
     addButton: {
         height: moderateScale(40),
         width: moderateScale(40),
-        borderRadius: 20,
+        borderRadius:moderateScale(20),
         alignSelf: 'center',
         marginBottom: moderateScaleVertical(30)
     },
@@ -38,7 +38,7 @@ export default homeStyle = StyleSheet.create({
     },
     detailsMain: {
         backgroundColor: '#c9c8c5',
-        borderRadius: 9,
+        borderRadius: moderateScale(9),
         marginVertical: moderateScaleVertical(20),
         borderColor: 'orange',
         borderWidth: 1,
@@ -55,22 +55,22 @@ export default homeStyle = StyleSheet.create({
         shadowOpacity: 1
     },
     deleteButton: {
-        height: 40,
-        width: 40,
+        height: moderateScale(40),
+        width: moderateScale(40),
         marginRight: moderateScaleVertical(10),
-        borderRadius: 20,
+        borderRadius: moderateScale(20),
         marginTop: moderateScaleVertical(10)
     },
     editTextView: {
         backgroundColor: 'white',
-        height: 25,
-        width: 40,
+        height:moderateScale(25),
+        width: moderateScale(40),
         marginTop: moderateScaleVertical(20),
         marginBottom: moderateScaleVertical(10),
         paddingBottom: moderateScaleVertical(20),
     },
     editText: {
-        height: 40,
+        height: moderateScale(40),
         fontSize: textScale(20),
         justifyContent: 'center',
         alignContent: 'center',

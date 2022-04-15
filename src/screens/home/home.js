@@ -3,16 +3,15 @@ import React from 'react'
 import homeStyle from './homeStyle';
 import navigationString from '../../navigations/navigationString';
 import ImagePath from '../../constants/imagePath';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import actions from '../../redux/actions';
-import { deleteData } from '../../redux/actions/addDetails';
+
 
 
 
 
 export default function Home({ navigation }) {
 
-  const dispatch = useDispatch();
   const list = useSelector((state) => state.dataDetails.detailsList)
   console.log('List+++++', list)
 
@@ -20,7 +19,6 @@ export default function Home({ navigation }) {
     // console.log("id " ,id)
     navigation.navigate(navigationString.ADD_DETAILS, { userId: index })
     // console.log(index)
-
   }
  
 
@@ -66,7 +64,7 @@ export default function Home({ navigation }) {
                 <View style={homeStyle.editMainView}>
 
                   <View >
-                    <TouchableOpacity onPress={() => dispatch(deleteData(elem.dataId))}>
+                    <TouchableOpacity onPress={() => actions.deleteData(elem.dataId)}>
                       <Image source={ImagePath.delete} style={homeStyle.deleteButton} />
                       <Image />
                     </TouchableOpacity>

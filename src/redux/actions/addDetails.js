@@ -1,20 +1,23 @@
 import store from "../store";
 import types from "../types";
 const {dispatch} = store
+
+
+
 export const saveEmployeeDetails = (data) =>{
     // const nextid = 0;
-    return{
+    dispatch({
         type: types.USER_DATA,
         payload: data
-    }
+    })
 }
 
 
 export const deleteData = (dataId) => {
-    return {
+    dispatch({
         type: types.DELETE_DATA,
         dataId
-    }
+    })
 }
 
 export const editData = (data) => {

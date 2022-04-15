@@ -11,7 +11,7 @@ const TextInputComponent = ({
     return (
         <View style={styles.viewcss}>
 
-            <View>
+            <View style={{flex:1, justifyContent:'center'}} >
                 <TextInput placeholder={placeholder}
                  placeholderTextColor={placeholderTextColor} 
                  style={styles.inputtext} 
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
 
     },
     viewcss: {
-        // backgroundColor: 'grey',
+        
         borderBottomColor:colors.black,
         borderWidth:1,
         width:300,
@@ -45,13 +45,11 @@ const styles = StyleSheet.create({
         paddingHorizontal:9,
         height:35,
         justifyContent:'center',
-        // alignItems:'center',
-        // alignContent:'center',
         borderRadius:6
 
     },
     inputtext: {
-
+        color:'black'
         
     },
 

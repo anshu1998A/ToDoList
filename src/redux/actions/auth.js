@@ -1,7 +1,8 @@
 import store from "../store";
 import types from "../types";
 
-const {dispatch} = store
+const {dispatch} = store;
+
 export const logIN = (data) => {
     dispatch({
         type: types.LOGIN,
