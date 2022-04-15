@@ -1,8 +1,6 @@
 import { View, Text, SafeAreaView, TextInput, Button, TouchableOpacity } from 'react-native'
 import React from 'react';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { logIN } from '../../redux/actions/auth';
 import TextInputComponent from '../../components/textInput';
 import logInStyle from './logInStyle';
 import commonStyles from '../../styles/pageStyle'
@@ -20,12 +18,12 @@ export default function LogIn() {
   const emailRegex = /^[\w-\.\_\$]+@([\w]{3,5}\.)[\w]{2,4}$/;
   const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%\^&\*])(?=.{8,})");
 
-  const logInFun = () => {
+  const logInFun = (data) => {
     if (emailRegex.test(emailEnter)) {
       setEmail(false)
       if (strongRegex.test(passwordEnter)) {
         setPassword(false)
-        actions.logIN()
+        actions.logIN(data)
         // dispatch(logIN())
       }
       else {
@@ -65,7 +63,7 @@ export default function LogIn() {
             {
                 password ? <Text style={commonStyles.errorText} >password should not be empty</Text> : null
             }
-            <TouchableOpacity onPress={() => logInFun()}>
+            <TouchableOpacity onPress={() => logInFun([{email, password}])}>
                 <View style={logInStyle.logInView}>
                     <Text style={logInStyle.logInText} >LOGIN</Text>
                 </View>

@@ -2,13 +2,14 @@ import store from "../store";
 import types from "../types";
 
 const {dispatch} = store
-export const logIN = () => {
+export const logIN = (data) => {
     dispatch({
-        type: types.LOGIN
+        type: types.LOGIN,
+        payload: data
     })
 }
 export const Logout = () => {
-    return {
+    dispatch({
         type: types.LOGOUT
-    }
+    })
 }

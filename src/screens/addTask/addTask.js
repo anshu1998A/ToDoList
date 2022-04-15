@@ -13,11 +13,11 @@ export default function AddTask({ navigation, route }) {
   const USerID = route?.params?.userId
   const updateId = USerID?.dataId
 
-  const [name, setName] = useState('')
-  const [age, setAge] = useState('')
-  const [address, setAddress] = useState('')
-  const [rollno, setRollno] = useState('')
-  const [phone, setPhoneNumber] = useState('')
+  const [name, setName] = useState('Anshu')
+  const [age, setAge] = useState('23')
+  const [address, setAddress] = useState('HP')
+  const [rollno, setRollno] = useState('2345678')
+  const [phone, setPhoneNumber] = useState('7896352011')
 
   const [nameError, setNameError] = useState(false)
   const [ageError, setAgeErro] = useState(false)

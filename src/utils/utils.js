@@ -1,5 +1,4 @@
 import AsyncStorage from "@react-native-async-storage/async-storage"
-import { useState, useEffect } from "react";
 
 
 export const saveState = async (detailsList) => {
@@ -24,14 +23,45 @@ export const getData = async () => {
 }
 
 
-export const removeData = async () => {
+export const saveLogin = async (data) => {
   try {
-  await AsyncStorage.removeItem('data_key');
+    const initState = JSON.stringify(data);
+    await AsyncStorage.setItem('login_key', initState);
+    console.log('Data is stored in store')
+    return initState
   } catch (error) {
-  console.log(error);
+    console.log('data is not svaed')
   }
-  };
+}
 
+export const storeLogin = async (data) => {
+  try {
+    const jsonValue = JSON.stringify(data)
+    await AsyncStorage.setItem('login_key', jsonValue)
+    return jsonValue
+  } catch (e) {
+    console.log("login_data store error")
+  }
+}
+
+
+export const getLogin = async () => {
+  try {
+    const jsonValue = await AsyncStorage.getItem('login_key')
+    return jsonValue != null ? JSON.parse(jsonValue) : null;
+  } catch(e) {
+    console.log("login_data get error")
+  }
+}  
+
+
+export const removeLogin = async() =>{
+  try {
+      await AsyncStorage.removeItem('login_key')
+  } catch (error) {
+    
+  }
+}
 
 // export const saveData = async (data) => {
 //   try {

@@ -4,7 +4,7 @@ import homeStyle from './homeStyle';
 import navigationString from '../../navigations/navigationString';
 import ImagePath from '../../constants/imagePath';
 import { useDispatch, useSelector } from 'react-redux';
-import { Logout } from '../../redux/actions/auth';
+import actions from '../../redux/actions';
 import { deleteData } from '../../redux/actions/addDetails';
 
 
@@ -45,7 +45,7 @@ export default function Home({ navigation }) {
         <View style={homeStyle.homeView}>
           <Text style={homeStyle.homeText}>Home</Text>
         </View>
-        <TouchableOpacity onPress={() => dispatch(Logout())}>
+        <TouchableOpacity onPress={actions.Logout}>
           <View>
             <Text style={homeStyle.logOutText}>LogOut</Text>
           </View>
