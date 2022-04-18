@@ -3,4 +3,5 @@ export default {
     HOME : 'Home',
     ADD_DETAILS: 'AddTask',
     SUBMIT : 'submit',
+    ABOUT: 'about'
 }

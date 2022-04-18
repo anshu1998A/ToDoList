@@ -1,0 +1,22 @@
+export default{
+    LOGIN_TO_YOUR_ACCOUNT :"Accedi al tuo account",
+    ENTER_YOUR_USER_NAME: "Inserisci il tuo nome utente",
+    EMAIL_SHOULD_NOT_BE_EMPTY:"Email should not be empty",
+    ENTER_YOUR_PASSWORD:'Enter your password',
+    PASSWORD_SHOULD_NOT_BE_EMPTY:"password should not be empty",
+    LOGIN:"LOGIN",
+    HOME:'Home',
+    LOGOUT:'LogOut',
+    NAME: "Name",
+    AGE:"Age",
+    ROLLNO: "RouleauNon",
+    MOBILE_NUMBER: "Mobile number",
+    ADDRESS:"Address",
+    EDIT: "Edit",
+    ENTER_YOUR_NAME:'Enter your Name',
+    ENTER_YOUR_AGE:'Enter your age',
+    ENTER_YOUR_ROLL_NO: 'Enter your roll no',
+    ENTER_YOUR_MOBILE_NUMBER:'Enter your mobile number',
+    UPDATE: "Update",
+    SUBMIT: "Submit"
+}

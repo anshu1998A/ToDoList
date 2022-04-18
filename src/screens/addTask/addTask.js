@@ -4,9 +4,8 @@ import TextInputComponent from '../../components/textInput';
 import colors from '../../styles/colors';
 import navigationString from '../../navigations/navigationString';
 import ButtonComponent from '../../components/button';
-import { useDispatch } from 'react-redux';
-import { saveEmployeeDetails } from '../../redux/actions/addDetails';
 import actions from '../../redux/actions';
+import strings from '../../constants/lang';
 
 
 
@@ -113,7 +112,7 @@ export default function AddTask({ navigation, route }) {
   return (
     <View style={{ justifyContent: 'center', alignSelf: 'center' }} >
       <TextInputComponent
-        placeholder={'Enter your Name'}
+        placeholder={strings.ENTER_YOUR_NAME}
         placeholderTextColor={colors.blackC}
         onchangeText={(value) => setName(value)}
         valuee={name}
@@ -122,7 +121,7 @@ export default function AddTask({ navigation, route }) {
         nameError ? <Text> enter name</Text> : null
       }
       <TextInputComponent
-        placeholder={'Enter your age'}
+        placeholder={strings.ENTER_YOUR_AGE}
         placeholderTextColor={colors.blackC}
         onchangeText={(value) => setAge(value)}
         valuee={age}
@@ -131,7 +130,7 @@ export default function AddTask({ navigation, route }) {
         ageError ? <Text> enter age </Text> : null
       }
       <TextInputComponent
-        placeholder={'Enter rollNo.'}
+        placeholder={strings.ENTER_YOUR_ROLL_NO}
         placeholderTextColor={colors.blackC}
         onchangeText={(value) => setRollno(value)}
         valuee={rollno}
@@ -140,7 +139,7 @@ export default function AddTask({ navigation, route }) {
         rollnoError ? <Text> enter roll number </Text> : null
       }
       <TextInputComponent
-        placeholder={'Enter address'}
+        placeholder={strings.ENTER_YOUR_ADDRESS}
         placeholderTextColor={colors.blackC}
         onchangeText={(value) => setAddress(value)}
         valuee={address}
@@ -149,7 +148,7 @@ export default function AddTask({ navigation, route }) {
         addressError ? <Text> enter address</Text> : null
       }
       <TextInputComponent
-        placeholder={'Enter mobile number'}
+        placeholder={strings.ENTER_YOUR_MOBILE_NUMBER}
         placeholderTextColor={colors.blackC}
         onchangeText={(value) => setPhoneNumber(value)}
         valuee={phone}
@@ -157,7 +156,7 @@ export default function AddTask({ navigation, route }) {
       {
         phoneError ? <Text> enter mobile number</Text> : null
       }
-      <ButtonComponent buttonText={USerID ? "Update" : 'Submit'} onpress={USerID ? EditDetails : submit} />
+      <ButtonComponent buttonText={USerID ? strings.UPDATE : strings.SUBMIT} onpress={USerID ? EditDetails : submit} />
     </View>
   )
 }

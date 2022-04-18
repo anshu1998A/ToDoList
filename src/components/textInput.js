@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, Image, TextInput } from 'react-native'
 import React from 'react';
 import colors from '../styles/colors';
+import fontFamily from '../styles/fontFamily';
 
 const TextInputComponent = ({
     placeholder = '',
@@ -49,7 +50,9 @@ const styles = StyleSheet.create({
 
     },
     inputtext: {
-        color:'black'
+        color:'black',
+        padding:0.5,
+        fontFamily: fontFamily.MULISH_REGULAR
         
     },
 

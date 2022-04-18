@@ -14,7 +14,6 @@ const dataDetails = (state = initialState, action) => {
 
         case type.USER_DATA: {
 
-
             const data = action.payload;
             let storedArr = state.detailsList.concat(data)
             // console.log("fuyk", data)
@@ -36,12 +35,11 @@ const dataDetails = (state = initialState, action) => {
             if (index >= 0) {
                 delList.splice(index, 1)
             }
-
             saveState(delList).then((val) => {
                 console.log("delete store data", val)
             })
-            console.log("index", index)
-            console.log('ghvdbfc', delList)
+            // console.log("index", index)
+            // console.log('ghvdbfc', delList)
             return {
                 ...state,
                 detailsList: delList
@@ -58,7 +56,8 @@ const dataDetails = (state = initialState, action) => {
             elem.dataId === data.updateId
             )
 
-            console.log("update array in the store is", updateArry)
+            // console.log("update array in the store is", updateArry)
+
             newArray[updateArry] = data
             saveState(newArray).then((val) => {
                 console.log("my store data", val)

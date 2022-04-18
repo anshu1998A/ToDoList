@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native'
 import { moderateScale, moderateScaleVertical, textScale } from '../../styles/responsiveSize';
-
+import fontFamily from '../../styles/fontFamily';
 
 export default logInStyle = StyleSheet.create({
 
@@ -13,8 +13,10 @@ export default logInStyle = StyleSheet.create({
 
     logInHeading: {
         fontSize: moderateScale(20),
-        fontWeight: '700',
-        color: '#7d9ac9'
+        // fontWeight: '700',
+        color: '#7d9ac9',
+        fontFamily:fontFamily.MULISh_BOLD
+        
     },
 
     userInput: {
@@ -23,7 +25,6 @@ export default logInStyle = StyleSheet.create({
         marginTop: moderateScale(10),
         borderRadius: moderateScale(5),
         height: moderateScale(30),
-        width: moderateScale(20),
     },
     logInView:
     {
@@ -33,7 +34,7 @@ export default logInStyle = StyleSheet.create({
         borderRadius: moderateScale(4),
         margin: moderateScale(10),
         justifyContent: 'center',
-        width: moderateScale(150),
+        // width: moderateScale(150),
         height: moderateScale(40),
         alignSelf: 'center'
     }
@@ -42,7 +43,9 @@ export default logInStyle = StyleSheet.create({
     logInText:
     {
         fontSize: textScale(18),
-         fontWeight: '600'
+        //  fontWeight: '600',
+         color:"black",
+        //  fontFamily:fontFamily.MULISH_REGULAR
     },
 
 });

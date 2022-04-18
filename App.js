@@ -4,12 +4,15 @@ import { Provider } from 'react-redux';
 import store from './src/redux/store';
 import { getData, getLogin } from './src/utils/utils';
 import types from './src/redux/types';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import strings from './src/constants/lang';
 
-const {dispatch} = store;
+const { dispatch } = store;
 
 export default function App() {
   useEffect(() => {
 
+    getLang()
     getLogin().then((res) => {
       dispatch({
         type: types.LOGIN,
@@ -17,22 +20,36 @@ export default function App() {
       })
     })
 
-    getData().then((res) =>{
-      if(!!res){
+    getData().then((res) => {
+      if (!!res) {
         dispatch({
           type: types.USER_DATA,
           payload: res
         })
       }
     })
-      },[])
+  }, [])
 
+
+  const getLang = async () => {
+    try {
+      const lang = await AsyncStorage.getItem('language')
+      if(!!lang){
+        strings.setLanguage(lang)
+      }
+      else{
+        strings.setLanguage('en')
+      }
+    } catch (error) {
+      
+    }
+  }
   return (
 
     <Provider store={store}>
-      <Route/>
+      <Route />
     </Provider>
-    
+
   )
 }
 

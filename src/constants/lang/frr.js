@@ -1,0 +1,25 @@
+export default
+{LOGIN_TO_YOUR_ACCOUNT: "Connectez-vous à votre compte",
+ENTER_YOUR_USER_NAME:"Entrez votre nom d'utilisateur",
+EMAIL_SHOULD_NOT_BE_EMPTY:"L'e-mail ne doit pas être vide",
+ENTER_YOUR_PASSWORD:"Tapez votre mot de passe",
+PASSWORD_SHOULD_NOT_BE_EMPTY:"le mot de passe ne doit pas être vide",
+LOGIN:"CONNEXION",
+HOME: "Domicile",
+LOGOUT: "Se déconnecter",
+NAME: "Nom",
+AGE:"Âge",
+
+ROLLNO: "RouleauNon",
+MOBILE_NUMBER: "Numéro mobile",
+ADDRESS:"Adresse",
+EDIT: "Modifier",
+ENTER_YOUR_NAME:'Entrez votre nom',
+ENTER_YOUR_AGE:'Entrez votre âge',
+ENTER_YOUR_ROLL_NO: 'Entrez votre matricule',
+ENTER_YOUR_MOBILE_NUMBER:'Entrez votre numéro de mobile',
+ENTER_YOUR_ADDRESS: 'Entrez votre adresse',
+UPDATE: "Mise à jour",
+SUBMIT: 'Soumettre',
+ENTER_VALID_EMAIL: "Entrer un email valide"
+}

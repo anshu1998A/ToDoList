@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import fontFamily from '../../styles/fontFamily';
 import { moderateScale, moderateScaleVertical, textScale } from '../../styles/responsiveSize';
 
 
@@ -10,7 +11,8 @@ export default homeStyle = StyleSheet.create({
     },
     homeText: {
         fontSize: textScale(20),
-        fontWeight: '700',
+        // fontWeight: '700',
+        fontFamily:fontFamily.MULISh_BOLD,
         color: 'black',
         marginRight: moderateScaleVertical(20),
         marginTop: moderateScale(10)
@@ -31,7 +33,8 @@ export default homeStyle = StyleSheet.create({
     },
     logOutText: {
         fontSize: textScale(20),
-        fontWeight: '700',
+        // fontWeight: '700',
+        fontFamily:fontFamily.MULISh_BOLD,
         color: 'orange',
         marginRight: moderateScaleVertical(20),
         marginTop: moderateScale(10)
@@ -64,7 +67,6 @@ export default homeStyle = StyleSheet.create({
     editTextView: {
         backgroundColor: 'white',
         height:moderateScale(25),
-        width: moderateScale(40),
         marginTop: moderateScaleVertical(20),
         marginBottom: moderateScaleVertical(10),
         paddingBottom: moderateScaleVertical(20),
@@ -76,10 +78,13 @@ export default homeStyle = StyleSheet.create({
         alignContent: 'center',
         alignItems: 'center',
         alignSelf: 'center',
+        fontFamily: fontFamily.MULISH_REGULAR,
         color: 'black'
     },
     savedData: {
         marginLeft: moderateScale(10),
-        marginBottom: moderateScaleVertical(5)
+        marginBottom: moderateScaleVertical(5),
+        fontFamily: fontFamily.MULISH_REGULAR,
+        color:'black'
     }
 })

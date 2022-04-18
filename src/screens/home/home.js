@@ -1,13 +1,11 @@
-import { View, Text,  TouchableOpacity, Image, ScrollView } from 'react-native'
+import { View, Text, TouchableOpacity, Image, FlatList } from 'react-native'
 import React from 'react'
 import homeStyle from './homeStyle';
 import navigationString from '../../navigations/navigationString';
 import ImagePath from '../../constants/imagePath';
 import { useSelector } from 'react-redux';
 import actions from '../../redux/actions';
-
-
-
+import strings from '../../constants/lang';
 
 
 export default function Home({ navigation }) {
@@ -20,69 +18,61 @@ export default function Home({ navigation }) {
     navigation.navigate(navigationString.ADD_DETAILS, { userId: index })
     // console.log(index)
   }
- 
 
+  // const about = () =>{
+  //   navigation.navigate(navigationString.ABOUT)
+  // }
 
+  const showDetails = ({item, index}) => {
+    const elem = item
+    return (
+      <View key={index} style={homeStyle.detailsMain}>
+        <View>
+          <Text style={homeStyle.savedData}> {strings.NAME}: {elem.name}</Text>
+          <Text style={homeStyle.savedData} > {strings.AGE}: {elem.age}</Text>
+          <Text style={homeStyle.savedData} > {strings.ROLLNO}: {elem.rollno}</Text>
+          <Text style={homeStyle.savedData} > {strings.ADDRESS}: {elem.address}</Text>
+          <Text style={homeStyle.savedData} > {strings.MOBILE_NUMBER}: {elem.phone}</Text>
+        </View>
+        <View style={homeStyle.editMainView}>
+
+          <View >
+            <TouchableOpacity onPress={() => actions.deleteData(elem.dataId)}>
+              <Image source={ImagePath.delete} style={homeStyle.deleteButton} />
+              <Image />
+            </TouchableOpacity>
+          </View>
+          {/* console.log(elem) */}
+          <TouchableOpacity onPress={() => editDetails(elem, index)} >
+
+            <View style={homeStyle.editTextView}>
+              <Text style={homeStyle.editText}>{strings.EDIT}</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      </View>
+    )
+  }
 
   return (
     <View style={homeStyle.homeView}>
 
-
-      {/* <Image
-        source={{ uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRao71aypm3fhKKbyl7eEG7Mk_lOeWDGCYliwkXsoZRuKhoVIhv3PesR9ms03fvOX3tAKI&usqp=CAU" }}
-        style={{
-          height: moderateScale(80),
-          width: moderateScale(80),
-          borderRadius: moderateScale(40)
-        }}
-      /> */}
-
-
-
       <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
         <View style={homeStyle.homeView}>
-          <Text style={homeStyle.homeText}>Home</Text>
+          <Text style={homeStyle.homeText}>{strings.HOME}</Text>
         </View>
+       
         <TouchableOpacity onPress={actions.Logout}>
           <View>
-            <Text style={homeStyle.logOutText}>LogOut</Text>
+            <Text style={homeStyle.logOutText}>{strings.LOGOUT}</Text>
           </View>
         </TouchableOpacity>
       </View>
-      <ScrollView>
-        {
-          list.map((elem, index) => {
-            return (
-              <View key={index} style={homeStyle.detailsMain}>
-                <View>
-                  <Text style={homeStyle.savedData}> Name: {elem.name}</Text>
-                  <Text style={homeStyle.savedData} > Age: {elem.age}</Text>
-                  <Text style={homeStyle.savedData} > RollNo: {elem.rollno}</Text>
-                  <Text style={homeStyle.savedData} > Address: {elem.address}</Text>
-                  <Text style={homeStyle.savedData} > Mobile Number: {elem.phone}</Text>
-                </View>
-                <View style={homeStyle.editMainView}>
 
-                  <View >
-                    <TouchableOpacity onPress={() => actions.deleteData(elem.dataId)}>
-                      <Image source={ImagePath.delete} style={homeStyle.deleteButton} />
-                      <Image />
-                    </TouchableOpacity>
-                  </View>
-                  {/* console.log(elem) */}
-                  <TouchableOpacity onPress={() => editDetails(elem, index)} >
-
-                    <View style={homeStyle.editTextView}>
-                      <Text style={homeStyle.editText}>Edit</Text>
-                    </View>
-                  </TouchableOpacity>
-                </View>
-              </View>
-
-            )
-          })
-        }
-      </ScrollView>
+      <FlatList 
+      data={list} 
+      renderItem = {showDetails}/>
+      
 
       <TouchableOpacity onPress={() => navigation.navigate(navigationString.ADD_DETAILS)}>
         <View>
