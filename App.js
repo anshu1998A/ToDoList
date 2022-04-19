@@ -6,6 +6,8 @@ import { getData, getLogin } from './src/utils/utils';
 import types from './src/redux/types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import strings from './src/constants/lang';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+
 
 const { dispatch } = store;
 
@@ -13,6 +15,7 @@ export default function App() {
   useEffect(() => {
 
     getLang()
+    GoogleSignin.configure()
     getLogin().then((res) => {
       dispatch({
         type: types.LOGIN,

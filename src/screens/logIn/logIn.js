@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, SafeAreaView } from 'react-native'
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import TextInputComponent from '../../components/textInput';
 import logInStyle from './logInStyle';
@@ -10,6 +10,10 @@ import strings, { changeLanguage } from '../../constants/lang';
 import Modal from "react-native-modal";
 import { moderateScale } from '../../styles/responsiveSize';
 import colors from '../../styles/colors';
+import { LoginManager, GraphRequest, GraphRequestManager } from "react-native-fbsdk";
+// import { GoogleSignin, statusCodes } from 'react-native-google-signin';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+
 
 
 export default function LogIn() {
@@ -27,6 +31,27 @@ export default function LogIn() {
 
 
 
+
+  // **********************************************************GOOGLE LOGIN************************************************
+  const googleLogin = async () => {
+    try {
+      await GoogleSignin.hasPlayServices();
+      const userInfo = await GoogleSignin.signIn();
+      console.log("user info", userInfo)
+      this.setState({ userInfo });
+    } catch (error) {
+      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+        console.log("error raise", error)
+      } else if (error.code === statusCodes.IN_PROGRESS) {
+
+        console.log("error raise", error)
+      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+        console.log("error raise", error)
+      } else {
+        console.log("error raise", error)
+      }
+    }
+  };
   // ********************************************************SHOW MODAL FUNCTION************************************************************
   const showModal = () => {
     setModal(() => !modal);
@@ -53,7 +78,7 @@ export default function LogIn() {
         setEmail(true)
       }
     }
-    else{
+    else {
       setErrorMail(true)
     }
   }
@@ -62,6 +87,54 @@ export default function LogIn() {
   const changeLang = (val) => {
     changeLanguage(val)
     RNRestart.Restart()
+  }
+
+  // ****************************************************************LOGIN WITH FACEBOOK***********************************************************************
+
+  const fbLogIn = (resCallBack) => {
+    LoginManager.logOut();
+    return LoginManager.logInWithPermissions(['email', 'public_profile']).then(
+      result => {
+        console.log("fb result ****************", result);
+        if (result.declinedPermissions && result.declinedPermissions.includes("email")) {
+          resCallBack({ message: "Email is required" })
+        }
+        if (result.isCancelled) {
+          console.log("dxcfgvbhjn")
+        } else {
+          const infoRequest = new GraphRequest(
+            'me?fields= email,name, picture',
+            null,
+            resCallBack
+          );
+          new GraphRequestManager().addRequest(infoRequest).start()
+        }
+      },
+      function (errror) {
+        console.log("login failed", errror)
+      }
+    )
+  }
+
+
+  const onFBlogIn = async () => {
+    try {
+      await fbLogIn(_resInfoCallback)
+    } catch (error) {
+      console.log("drcfgvbhjnk", error)
+    }
+  }
+
+
+  const _resInfoCallback = async (error, result) => {
+    if (error) {
+      console.log("error raised at response", error)
+      return;
+    }
+    else {
+      const userData = result
+      console.log("userData **********", userData)
+    }
   }
 
 
@@ -108,6 +181,17 @@ export default function LogIn() {
         </View>
       </TouchableOpacity>
 
+      <TouchableOpacity onPress={onFBlogIn}>
+        <View style={logInStyle.logInView}>
+          <Text style={logInStyle.logInText}>{strings.LOGIN_WITH_FACEBOOK}</Text>
+        </View>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={googleLogin}>
+        <View style={logInStyle.logInView}>
+          <Text style={logInStyle.logInText}>Login with google</Text>
+        </View>
+      </TouchableOpacity>
       {/* ************************************************************MODAL TO SELECT THE LAnGUAGE********************************************************** */}
       <Modal isVisible={modal}>
         <SafeAreaView style={{ backgroundColor: 'white', height: moderateScale(400) }}>

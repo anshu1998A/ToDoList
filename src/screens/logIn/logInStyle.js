@@ -28,13 +28,13 @@ export default logInStyle = StyleSheet.create({
     },
     logInView:
     {
-        alignContent: 'center',
+  
         alignItems: 'center',
         backgroundColor: 'orange',
         borderRadius: moderateScale(4),
         margin: moderateScale(10),
         justifyContent: 'center',
-        // width: moderateScale(150),
+        width: moderateScale(250),
         height: moderateScale(40),
         alignSelf: 'center'
     }
@@ -45,7 +45,7 @@ export default logInStyle = StyleSheet.create({
         fontSize: textScale(18),
         //  fontWeight: '600',
          color:"black",
-        //  fontFamily:fontFamily.MULISH_REGULAR
+         fontFamily:fontFamily.MULISH_REGULAR
     },
 
 });

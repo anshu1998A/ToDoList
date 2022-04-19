@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "187765069420",
+    "project_id": "auth-a5990",
+    "storage_bucket": "auth-a5990.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:187765069420:android:0b96180033cb6d0f2caa49",
+        "android_client_info": {
+          "package_name": "com.todolist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "187765069420-7rh48nae5rab4b95jlrq4ctuvrips7qi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDF5CtkDM0NToCJslCxmt4VI4RIRLZyauA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "187765069420-7rh48nae5rab4b95jlrq4ctuvrips7qi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

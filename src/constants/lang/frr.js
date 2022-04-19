@@ -21,5 +21,6 @@ ENTER_YOUR_MOBILE_NUMBER:'Entrez votre numéro de mobile',
 ENTER_YOUR_ADDRESS: 'Entrez votre adresse',
 UPDATE: "Mise à jour",
 SUBMIT: 'Soumettre',
-ENTER_VALID_EMAIL: "Entrer un email valide"
+ENTER_VALID_EMAIL: "Entrer un email valide",
+LOGIN_WITH_FACEBOOK: "SE CONNECTER AVEC FACEBOOK"
 }
