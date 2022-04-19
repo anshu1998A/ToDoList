@@ -11,8 +11,7 @@ import Modal from "react-native-modal";
 import { moderateScale } from '../../styles/responsiveSize';
 import colors from '../../styles/colors';
 import { LoginManager, GraphRequest, GraphRequestManager } from "react-native-fbsdk";
-// import { GoogleSignin, statusCodes } from 'react-native-google-signin';
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 
 
 
@@ -33,22 +32,45 @@ export default function LogIn() {
 
 
   // **********************************************************GOOGLE LOGIN************************************************
+  // const googleLogin = async () => {
+  //   try {
+  //     await GoogleSignin.hasPlayServices();
+  //     const userInfo = await GoogleSignin.signIn();
+  //     console.log("user info", userInfo)
+  //     this.setState({ userInfo });
+  //   } catch (error) {
+  //     if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+  //       console.log("error raise", error)
+  //     } else if (error.code === statusCodes.IN_PROGRESS) {
+
+  //       console.log("error raise", error)
+  //     } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+  //       console.log("error raise", error)
+  //     } else {
+  //       console.log("error raise", error)
+  //     }
+  //   }
+  // };
   const googleLogin = async () => {
     try {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
-      console.log("user info", userInfo)
-      this.setState({ userInfo });
+      console.log('user info', userInfo);
+      const email = userInfo.user.email
+      const id = userInfo.user.id
+      const data = { email, id }
+      loginContinue(data);
+      console.log(data, "google data");
+      // this.setState({userInfo});
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        console.log("error raise", error)
+        console.log('error raise', error);
       } else if (error.code === statusCodes.IN_PROGRESS) {
-
-        console.log("error raise", error)
+        console.log('error raise', error);
       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        console.log("error raise", error)
+        console.log('error raise', error);
       } else {
-        console.log("error raise", error)
+        // some other error happened
       }
     }
   };
@@ -100,7 +122,7 @@ export default function LogIn() {
           resCallBack({ message: "Email is required" })
         }
         if (result.isCancelled) {
-          console.log("dxcfgvbhjn")
+          // console.log("dxcfgvbhjn")
         } else {
           const infoRequest = new GraphRequest(
             'me?fields= email,name, picture',
@@ -120,8 +142,10 @@ export default function LogIn() {
   const onFBlogIn = async () => {
     try {
       await fbLogIn(_resInfoCallback)
+      console.log("data details", )
+
     } catch (error) {
-      console.log("drcfgvbhjnk", error)
+      console.log("error raisedkl;kjh", error)
     }
   }
 
