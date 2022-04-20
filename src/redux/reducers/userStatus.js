@@ -6,8 +6,6 @@ const inititalState = {
 }
 const userStatus = (state = inititalState, action) => {
     switch (action.type) {
-
-        
         case types.LOGIN: 
         data=action.payload
         saveLogin(data)

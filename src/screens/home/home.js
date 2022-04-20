@@ -6,7 +6,7 @@ import ImagePath from '../../constants/imagePath';
 import { useSelector } from 'react-redux';
 import actions from '../../redux/actions';
 import strings from '../../constants/lang';
-
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 export default function Home({ navigation }) {
 
@@ -18,12 +18,20 @@ export default function Home({ navigation }) {
     navigation.navigate(navigationString.ADD_DETAILS, { userId: index })
     // console.log(index)
   }
+  const signout = async () => {
+    try {
+      await GoogleSignin.signOut()
+      actions.Logout()
+    }
+    catch (error) {
 
-  // const about = () =>{
-  //   navigation.navigate(navigationString.ABOUT)
-  // }
+    }
+  }
+  const about = () => {
+    navigation.navigate(navigationString.ABOUT)
+  }
 
-  const showDetails = ({item, index}) => {
+  const showDetails = ({ item, index }) => {
     const elem = item
     return (
       <View key={index} style={homeStyle.detailsMain}>
@@ -61,18 +69,24 @@ export default function Home({ navigation }) {
         <View style={homeStyle.homeView}>
           <Text style={homeStyle.homeText}>{strings.HOME}</Text>
         </View>
-       
-        <TouchableOpacity onPress={actions.Logout}>
+
+        <TouchableOpacity onPress={about}>
+          <View>
+            <Text style={homeStyle.logOutText}>About</Text>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={signout}>
           <View>
             <Text style={homeStyle.logOutText}>{strings.LOGOUT}</Text>
           </View>
         </TouchableOpacity>
       </View>
 
-      <FlatList 
-      data={list} 
-      renderItem = {showDetails}/>
-      
+      <FlatList
+        data={list}
+        renderItem={showDetails} />
+
 
       <TouchableOpacity onPress={() => navigation.navigate(navigationString.ADD_DETAILS)}>
         <View>

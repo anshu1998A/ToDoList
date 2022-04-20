@@ -7,13 +7,14 @@ import types from './src/redux/types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import strings from './src/constants/lang';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
-
+import { requestUserPermission } from './src/utils/notificationServices';
 
 const { dispatch } = store;
 
 export default function App() {
   useEffect(() => {
 
+    requestUserPermission()
     getLang()
     GoogleSignin.configure()
     getLogin().then((res) => {

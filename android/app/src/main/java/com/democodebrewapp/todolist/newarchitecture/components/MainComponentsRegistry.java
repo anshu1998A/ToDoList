@@ -1,4 +1,4 @@
-package com.todolist.newarchitecture.components;
+package com.democodebrewapp.todolist.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;

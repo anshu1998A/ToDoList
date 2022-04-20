@@ -56,12 +56,10 @@ export default function LogIn() {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
       console.log('user info', userInfo);
-      const email = userInfo.user.email
-      const id = userInfo.user.id
-      const data = { email, id }
-      loginContinue(data);
+      const data = userInfo?.user;
+      console.log("console after google Login---", data);
+      actions.logIN(data)
       console.log(data, "google data");
-      // this.setState({userInfo});
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         console.log('error raise', error);
@@ -142,7 +140,7 @@ export default function LogIn() {
   const onFBlogIn = async () => {
     try {
       await fbLogIn(_resInfoCallback)
-      console.log("data details", )
+      console.log("data details",)
 
     } catch (error) {
       console.log("error raisedkl;kjh", error)
@@ -157,6 +155,7 @@ export default function LogIn() {
     }
     else {
       const userData = result
+      actions.logIN(userData)
       console.log("userData **********", userData)
     }
   }
@@ -193,7 +192,7 @@ export default function LogIn() {
       {
         password ? <Text style={commonStyles.errorText} >{strings.PASSWORD_SHOULD_NOT_BE_EMPTY}</Text> : null
       }
-      <TouchableOpacity onPress={() => logInFun([{ email, password }])}>
+      <TouchableOpacity onPress={() => logInFun({ email, password })}>
         <View style={logInStyle.logInView}>
           <Text style={logInStyle.logInText}>{strings.LOGIN}</Text>
         </View>
