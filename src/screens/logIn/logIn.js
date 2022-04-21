@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, SafeAreaView } from 'react-native'
+import { View, Text, TouchableOpacity, SafeAreaView, Image } from 'react-native'
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import TextInputComponent from '../../components/textInput';
@@ -8,19 +8,20 @@ import actions from '../../redux/actions';
 import RNRestart from 'react-native-restart';
 import strings, { changeLanguage } from '../../constants/lang';
 import Modal from "react-native-modal";
-import { moderateScale } from '../../styles/responsiveSize';
+import { moderateScale, textScale } from '../../styles/responsiveSize';
 import colors from '../../styles/colors';
 import { LoginManager, GraphRequest, GraphRequestManager } from "react-native-fbsdk";
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
-
+import imagePath from '../../constants/imagePath';
+import fontFamily from '../../styles/fontFamily';
 
 
 export default function LogIn() {
 
 
-  const [emailEnter, SetEmailEnter] = useState('Anshu@gmail.com');
+  const [email, SetEmail] = useState('Anshu@gmail.com');
   const [passwordEnter, setPasswordEnter] = useState('Anmf@1245');
-  const [email, setEmail] = useState(false);
+  const [emailEnter, setEmailEnter] = useState(false);
   const [errorMail, setErrorMail] = useState(false)
   const [password, setPassword] = useState(false);
   const [modal, setModal] = useState(false);
@@ -80,10 +81,10 @@ export default function LogIn() {
 
 
   const logInFun = (data) => {
-    if (emailEnter != 0) {
+    if (email != 0) {
       setErrorMail(false)
-      if (emailRegex.test(emailEnter)) {
-        setEmail(false)
+      if (emailRegex.test(email)) {
+        setEmailEnter(false)
         if (strongRegex.test(passwordEnter)) {
           setPassword(false)
           actions.logIN(data)
@@ -95,7 +96,7 @@ export default function LogIn() {
 
       }
       else {
-        setEmail(true)
+        setEmailEnter(true)
       }
     }
     else {
@@ -171,11 +172,11 @@ export default function LogIn() {
       <TextInputComponent
         placeholder={strings.ENTER_YOUR_USER_NAME}
         placeholderTextColor={colors.blackC}
-        onchangeText={(event) => SetEmailEnter(event)}
-        valuee={emailEnter}
+        onchangeText={(event) => SetEmail(event)}
+        valuee={email}
       />
       {
-        email ? <Text style={commonStyles.errorText} >{strings.EMAIL_SHOULD_NOT_BE_EMPTY}</Text> : null
+        emailEnter ? <Text style={commonStyles.errorText} >{strings.EMAIL_SHOULD_NOT_BE_EMPTY}</Text> : null
       }
       {
         errorMail ? <Text style={commonStyles.errorText} >{strings.EMAIL_SHOULD_NOT_BE_EMPTY}</Text> : null
@@ -204,17 +205,20 @@ export default function LogIn() {
         </View>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={onFBlogIn}>
-        <View style={logInStyle.logInView}>
-          <Text style={logInStyle.logInText}>{strings.LOGIN_WITH_FACEBOOK}</Text>
-        </View>
-      </TouchableOpacity>
-
-      <TouchableOpacity onPress={googleLogin}>
-        <View style={logInStyle.logInView}>
-          <Text style={logInStyle.logInText}>Login with google</Text>
-        </View>
-      </TouchableOpacity>
+      <View>
+        <Text style={{color:'black', textAlign: 'center', margin: moderateScale(30), fontSize: textScale(18), fontFamily: fontFamily.MULISH_REGULAR }}>Login With</Text></View>
+      <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+        <TouchableOpacity onPress={googleLogin}>
+          <Image
+            source={imagePath.google} style={{ height: moderateScale(40), width: moderateScale(50), }}/>
+        </TouchableOpacity>
+        <Text style={{ alignSelf: 'center', color:"black", margin: moderateScale(20), fontFamily: fontFamily.MULISH_REGULAR }}>Or</Text>
+        <TouchableOpacity onPress={onFBlogIn}>
+          <Image
+            source={imagePath.fb} style={{ height: moderateScale(40), width: moderateScale(40),  }}
+          />
+        </TouchableOpacity>
+      </View>
       {/* ************************************************************MODAL TO SELECT THE LAnGUAGE********************************************************** */}
       <Modal isVisible={modal}>
         <SafeAreaView style={{ backgroundColor: 'white', height: moderateScale(400) }}>

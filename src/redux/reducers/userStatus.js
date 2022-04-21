@@ -8,6 +8,7 @@ const userStatus = (state = inititalState, action) => {
     switch (action.type) {
         case types.LOGIN: 
         data=action.payload
+        console.log("ghihghr",data)
         saveLogin(data)
         return {
             userData:data
