@@ -127,6 +127,7 @@ export default function AddTask({ navigation, route }) {
         onchangeText={(value) => setAge(value)}
         valuee={age}
         keyboardType={'numeric'}
+        
 
       />
       {

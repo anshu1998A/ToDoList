@@ -12,7 +12,7 @@ function HeaderComponent({
 
 
   return (
-    <View style={{backgroundColor:'red'}}>
+    <View style={{backgroundColor:'red', height:mo}}>
       {
         leftHeader && (
           <Text>{name}</Text>
