@@ -17,6 +17,7 @@ export default{
     ENTER_YOUR_AGE:'Enter your age',
     ENTER_YOUR_ROLL_NO: 'Enter your roll no',
     ENTER_YOUR_MOBILE_NUMBER:'Enter your mobile number',
+    ENTER_YOUR_ADDRESS: 'Enter your Address',
     UPDATE: "Update",
     SUBMIT: "Submit",
     LOGIN_WITH_FACEBOOK: "Log in with facebook"

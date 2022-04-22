@@ -6,7 +6,9 @@ import { moderateScale, moderateScaleVertical, textScale } from '../../styles/re
 export default homeStyle = StyleSheet.create({
     homeView: {
         flex: 1,
-        marginLeft: moderateScale(10)
+        // marginLeft: moderateScale(10)
+        marginHorizontal: moderateScale(10),
+        // marginVertical: moderateScaleVertical(10)
 
     },
     homeText: {
@@ -42,10 +44,10 @@ export default homeStyle = StyleSheet.create({
     detailsMain: {
         backgroundColor: '#c9c8c5',
         borderRadius: moderateScale(9),
-        marginVertical: moderateScaleVertical(20),
+        marginVertical: moderateScaleVertical(10),
         borderColor: 'orange',
         borderWidth: 1,
-        marginHorizontal: moderateScale(10),
+        // marginHorizontal: moderateScale(10),
         justifyContent: 'space-between',
         shadowColor: 'orange',
         shadowOpacity: 1
@@ -54,10 +56,19 @@ export default homeStyle = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-end',
         marginHorizontal: moderateScale(20),
+        marginBottom: moderateScale(10),
+        // marginTop: moderateScale(20),
         shadowColor: 'grey',
         shadowOpacity: 1
     },
     deleteButton: {
+        height: moderateScale(40),
+        width: moderateScale(40),
+        marginRight: moderateScaleVertical(10),
+        borderRadius: moderateScale(20),
+        marginTop: moderateScaleVertical(10)
+    },
+    editButton:{
         height: moderateScale(40),
         width: moderateScale(40),
         marginRight: moderateScaleVertical(10),

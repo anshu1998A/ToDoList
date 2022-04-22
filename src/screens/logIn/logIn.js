@@ -14,10 +14,10 @@ import { LoginManager, GraphRequest, GraphRequestManager } from "react-native-fb
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 import imagePath from '../../constants/imagePath';
 import fontFamily from '../../styles/fontFamily';
-
+import ButtonComponent from '../../components/button';
+import HeaderComponent from '../../components/HeaderComponent';
 
 export default function LogIn() {
-
 
   const [email, SetEmail] = useState('Anshu@gmail.com');
   const [passwordEnter, setPasswordEnter] = useState('Anmf@1245');
@@ -28,30 +28,8 @@ export default function LogIn() {
   const emailRegex = /^[\w-\.\_\$]+@([\w]{3,5}\.)[\w]{2,4}$/;
   const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%\^&\*])(?=.{8,})");
 
-
-
-
-
   // **********************************************************GOOGLE LOGIN************************************************
-  // const googleLogin = async () => {
-  //   try {
-  //     await GoogleSignin.hasPlayServices();
-  //     const userInfo = await GoogleSignin.signIn();
-  //     console.log("user info", userInfo)
-  //     this.setState({ userInfo });
-  //   } catch (error) {
-  //     if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-  //       console.log("error raise", error)
-  //     } else if (error.code === statusCodes.IN_PROGRESS) {
-
-  //       console.log("error raise", error)
-  //     } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-  //       console.log("error raise", error)
-  //     } else {
-  //       console.log("error raise", error)
-  //     }
-  //   }
-  // };
+ 
   const googleLogin = async () => {
     try {
       await GoogleSignin.hasPlayServices();
@@ -77,9 +55,7 @@ export default function LogIn() {
   const showModal = () => {
     setModal(() => !modal);
   }
-
-
-
+  // *******************************************************LOGIN*******************************************************************
   const logInFun = (data) => {
     if (email != 0) {
       setErrorMail(false)
@@ -103,7 +79,6 @@ export default function LogIn() {
       setErrorMail(true)
     }
   }
-
   // *******************************************************************CAHNGE LANGUAGE********************************************************************
   const changeLang = (val) => {
     changeLanguage(val)
@@ -137,7 +112,6 @@ export default function LogIn() {
     )
   }
 
-
   const onFBlogIn = async () => {
     try {
       await fbLogIn(_resInfoCallback)
@@ -147,7 +121,6 @@ export default function LogIn() {
       console.log("error raisedkl;kjh", error)
     }
   }
-
 
   const _resInfoCallback = async (error, result) => {
     if (error) {
@@ -161,12 +134,12 @@ export default function LogIn() {
     }
   }
 
-
-
-
   return (
+<SafeAreaView style={{flex:1}}>
 
+      <HeaderComponent name='LogINNhgfjgyjhgkkhjljkuhyghN' leftHeader= {true}/>
     <View style={logInStyle.logInMain} >
+
 
       <Text style={logInStyle.logInHeading}>{strings.LOGIN_TO_YOUR_ACCOUNT}</Text>
       <TextInputComponent
@@ -174,12 +147,15 @@ export default function LogIn() {
         placeholderTextColor={colors.blackC}
         onchangeText={(event) => SetEmail(event)}
         valuee={email}
+        leftIcon={true}
+        icon={imagePath.userName}
+       
       />
       {
-        emailEnter ? <Text style={commonStyles.errorText} >{strings.EMAIL_SHOULD_NOT_BE_EMPTY}</Text> : null
+        emailEnter ? <Text style={commonStyles.errorText}>{strings.EMAIL_SHOULD_NOT_BE_EMPTY}</Text> : null
       }
       {
-        errorMail ? <Text style={commonStyles.errorText} >{strings.EMAIL_SHOULD_NOT_BE_EMPTY}</Text> : null
+        errorMail ? <Text style={commonStyles.errorText}>{strings.EMAIL_SHOULD_NOT_BE_EMPTY}</Text> : null
       }
 
       <TextInputComponent
@@ -189,33 +165,40 @@ export default function LogIn() {
           (value) => setPasswordEnter(value)
         }
         valuee={passwordEnter}
+        leftIcon={true}
+        icon={imagePath.password}
       />
       {
         password ? <Text style={commonStyles.errorText} >{strings.PASSWORD_SHOULD_NOT_BE_EMPTY}</Text> : null
       }
-      <TouchableOpacity onPress={() => logInFun({ email, password })}>
+      {/* <TouchableOpacity onPress={() => logInFun({ email, password })}>
         <View style={logInStyle.logInView}>
           <Text style={logInStyle.logInText}>{strings.LOGIN}</Text>
         </View>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
-      <TouchableOpacity onPress={() => showModal()}>
+      <ButtonComponent buttonText={strings.LOGIN} onpress={() => logInFun({ email, password })} dynamicStyle={true} style={{backgroundColor:'red',margin:100}}/>
+
+
+      <ButtonComponent buttonText={'Change Language'} onpress={() => showModal()} dynamicStyle={true} />
+
+      {/* <TouchableOpacity >
         <View style={logInStyle.logInView}>
           <Text style={logInStyle.logInText} >change lang</Text>
         </View>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
       <View>
-        <Text style={{color:'black', textAlign: 'center', margin: moderateScale(30), fontSize: textScale(18), fontFamily: fontFamily.MULISH_REGULAR }}>Login With</Text></View>
+        <Text style={{ color: 'black', textAlign: 'center', margin: moderateScale(30), fontSize: textScale(18), fontFamily: fontFamily.MULISH_REGULAR }}>Login With</Text></View>
       <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
         <TouchableOpacity onPress={googleLogin}>
           <Image
-            source={imagePath.google} style={{ height: moderateScale(40), width: moderateScale(50), }}/>
+            source={imagePath.google} style={{ height: moderateScale(40), width: moderateScale(50), }} />
         </TouchableOpacity>
-        <Text style={{ alignSelf: 'center', color:"black", margin: moderateScale(20), fontFamily: fontFamily.MULISH_REGULAR }}>Or</Text>
+        <Text style={{ alignSelf: 'center', color: "black", margin: moderateScale(20), fontFamily: fontFamily.MULISH_REGULAR }}>Or</Text>
         <TouchableOpacity onPress={onFBlogIn}>
           <Image
-            source={imagePath.fb} style={{ height: moderateScale(40), width: moderateScale(40),  }}
+            source={imagePath.fb} style={{ height: moderateScale(40), width: moderateScale(40), }}
           />
         </TouchableOpacity>
       </View>
@@ -237,5 +220,6 @@ export default function LogIn() {
       </Modal>
 
     </View>
+    </SafeAreaView>
   )
 }

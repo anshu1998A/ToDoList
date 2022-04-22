@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image, FlatList } from 'react-native'
+import { View, Text, TouchableOpacity, Image, FlatList, SafeAreaView } from 'react-native'
 import React from 'react'
 import homeStyle from './homeStyle';
 import navigationString from '../../navigations/navigationString';
@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import actions from '../../redux/actions';
 import strings from '../../constants/lang';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { moderateScale } from '../../styles/responsiveSize';
 
 export default function Home({ navigation }) {
 
@@ -35,7 +36,7 @@ export default function Home({ navigation }) {
     const elem = item
     return (
       <View key={index} style={homeStyle.detailsMain}>
-        <View>
+        <View style={{marginTop: moderateScale(20)}}>
           <Text style={homeStyle.savedData}> {strings.NAME}: {elem.name}</Text>
           <Text style={homeStyle.savedData} > {strings.AGE}: {elem.age}</Text>
           <Text style={homeStyle.savedData} > {strings.ROLLNO}: {elem.rollno}</Text>
@@ -51,19 +52,21 @@ export default function Home({ navigation }) {
             </TouchableOpacity>
           </View>
           {/* console.log(elem) */}
-          <TouchableOpacity onPress={() => editDetails(elem, index)} >
+          <View>
 
-            <View style={homeStyle.editTextView}>
-              <Text style={homeStyle.editText}>{strings.EDIT}</Text>
-            </View>
+          <TouchableOpacity onPress={() => editDetails(elem, index)} >
+            
+            <Image source={ImagePath.edit} style={homeStyle.editButton} />
+              <Image />
           </TouchableOpacity>
+          </View>
         </View>
       </View>
     )
   }
 
   return (
-    <View style={homeStyle.homeView}>
+    <SafeAreaView style={homeStyle.homeView}>
 
       <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
         <View style={homeStyle.homeView}>
@@ -95,7 +98,7 @@ export default function Home({ navigation }) {
       </TouchableOpacity>
 
 
-    </View>
+    </SafeAreaView>
 
   )
 }

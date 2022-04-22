@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, SafeAreaView } from 'react-native'
 import React, { useEffect, useState } from 'react';
 import TextInputComponent from '../../components/textInput';
 import colors from '../../styles/colors';
@@ -110,12 +110,13 @@ export default function AddTask({ navigation, route }) {
 
 
   return (
-    <View style={{ justifyContent: 'center', alignSelf: 'center' }} >
+    <SafeAreaView style={{ justifyContent: 'center', alignSelf: 'center' }} >
       <TextInputComponent
         placeholder={strings.ENTER_YOUR_NAME}
         placeholderTextColor={colors.blackC}
         onchangeText={(value) => setName(value)}
         valuee={name}
+        
       />
       {
         nameError ? <Text> enter name</Text> : null
@@ -125,6 +126,8 @@ export default function AddTask({ navigation, route }) {
         placeholderTextColor={colors.blackC}
         onchangeText={(value) => setAge(value)}
         valuee={age}
+        keyboardType={'numeric'}
+
       />
       {
         ageError ? <Text> enter age </Text> : null
@@ -134,6 +137,8 @@ export default function AddTask({ navigation, route }) {
         placeholderTextColor={colors.blackC}
         onchangeText={(value) => setRollno(value)}
         valuee={rollno}
+        keyboardType={'numeric'}
+
       />
       {
         rollnoError ? <Text> enter roll number </Text> : null
@@ -152,11 +157,13 @@ export default function AddTask({ navigation, route }) {
         placeholderTextColor={colors.blackC}
         onchangeText={(value) => setPhoneNumber(value)}
         valuee={phone}
+        maxLength={10}
+        keyboardType={'numeric'}
       />
       {
         phoneError ? <Text> enter mobile number</Text> : null
       }
-      <ButtonComponent buttonText={USerID ? strings.UPDATE : strings.SUBMIT} onpress={USerID ? EditDetails : submit} />
-    </View>
+      <ButtonComponent buttonText={USerID ? strings.UPDATE : strings.SUBMIT} onpress={USerID ? EditDetails : submit} dynamicStyle={true} />
+    </SafeAreaView>
   )
 }

@@ -22,7 +22,6 @@
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
 	<array>
-		
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
@@ -31,19 +30,21 @@
 				<string>com.googleusercontent.apps.187765069420-qusgnutjqq1l67ppfq9haq129t76p1if</string>
 			</array>
 		</dict>
-    <dict>
-      <key>CFBundleURLSchemes</key>
-      <array>
-        <string>fb525654699159378</string>
-      </array>
-      </dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb672611787280465</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>FacebookAppID</key>
-	<string>525654699159378</string>
-  <key>FacebookClientToken</key>
-  <string>9ae14ad6122a3c074447690e1ffb4c5f</string>
+	<string>672611787280465</string>
+	<key>FacebookClientToken</key>
+	<string>bea76bf969fb8a8b3333a3adbe7509fa</string>
 	<key>FacebookDisplayName</key>
 	<string>TODO LIST</string>
 	<key>LSApplicationQueriesSchemes</key>

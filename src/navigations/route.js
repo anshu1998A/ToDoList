@@ -17,7 +17,7 @@ const userStatus = useSelector(state => state.userStatus.userData);
 
   return (
     <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator screenOptions={{headerShown: false}}>
            {userStatus != null ? MainStack(Stack) : AuthStack(Stack)}
         </Stack.Navigator>
     </NavigationContainer>

@@ -7,7 +7,7 @@ import navigationString from './navigationString';
 export default function authStack(Stack) {
   return (
     <>
-   <Stack.Screen name ={navigationString.LOGIN} component = {LogIn}/>
+   <Stack.Screen name ={navigationString.LOGIN} component = {LogIn} />
     </>
   )
 }
